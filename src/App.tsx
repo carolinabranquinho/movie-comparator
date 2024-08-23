@@ -1,10 +1,12 @@
-import "./App.css";
+import { QueryClientProvider } from "@tanstack/react-query";
+import HomePage from "./pages/HomePage";
+import { queryClient } from "./config/tanstack-query-client";
 
 function App() {
   return (
-    <main className="center h-full w-full text-center">
-      <h1>Welcome</h1>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <HomePage />
+    </QueryClientProvider>
   );
 }
 
