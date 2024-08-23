@@ -4,9 +4,9 @@
   "useTabs": false,
   "semi": true,
   "singleQuote": false,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "plugins": ["prettier-plugin-tailwindcss"]
 }
