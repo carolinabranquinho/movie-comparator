@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Combobox, ComboboxOption } from "@/components/Combobox";
 import { Movie, useSearchMovies } from "@/data/movies";
-import { MovieCard } from "@/components/MovieCard";
+import { MoviesComparation } from "@/components/MoviesComparation";
 
 function HomePage() {
   const [selectedMovies, setSelectedMovies] = useState<Maybe<Movie[]>>();
@@ -21,6 +21,12 @@ function HomePage() {
     if (selectedMovie) {
       setSelectedMovies((current) => [...(current || []), selectedMovie]);
     }
+  };
+
+  const handleOnRemove = (movie: Movie) => {
+    setSelectedMovies((current) =>
+      (current || []).filter((m) => m.id !== movie.id),
+    );
   };
 
   // Remove selected movies from the options
@@ -43,9 +49,12 @@ function HomePage() {
         loading={isLoading}
       />
 
-      {selectedMovies?.map((selected) => (
-        <MovieCard key={selected.id} movie={selected} />
-      ))}
+      <section className="h-[80vh]">
+        <MoviesComparation
+          selectedMovies={selectedMovies}
+          onRemove={handleOnRemove}
+        />
+      </section>
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import { splitIntoStacks } from "./utils";
+import { splitIntoStacks } from "../utils";
 
 type CoinStackProps = {
   coinCount: number;
@@ -37,12 +37,15 @@ const coinSvg = (
 );
 
 export function CoinStack({ coinCount, maxCoinStack = 5 }: CoinStackProps) {
-  const stacks = splitIntoStacks(coinCount, maxCoinStack);
+  const stacks = splitIntoStacks(
+    Array.from<number>({ length: coinCount }).fill(0),
+    maxCoinStack,
+  );
 
   return stacks.map((stack, offset) => {
     return (
-      <g>
-        {Array.from({ length: stack }).map((_, index) => (
+      <g key={offset}>
+        {stack.map((_, index) => (
           <g
             key={index}
             transform={`translate(${offset * 2}, ${30 - index}) scale(0.3)`}
