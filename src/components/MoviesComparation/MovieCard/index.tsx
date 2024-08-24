@@ -30,7 +30,12 @@ export function MovieCard({ id, onRemove }: MovieCardProps) {
   const imageUrl = getFullImagePath(movieDetails, configuration);
 
   return (
-    <svg width="100%" height="100%" viewBox="0 0 100 100">
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 100 100"
+      data-testid="movie-card"
+    >
       <g color="red">
         <text x="10" y="10" fontSize="4">
           {movieDetails.title}
