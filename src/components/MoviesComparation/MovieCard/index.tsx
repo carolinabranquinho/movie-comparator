@@ -1,5 +1,5 @@
 import { useConfiguration } from "@/data/configuration";
-import { Movie, useGetMovieDetails } from "@/data/movies";
+import { useGetMovieDetails } from "@/data/movies";
 import { getFullImagePath } from "@/api/api-utils";
 import { CloseIcon } from "../../CloseIcon";
 import { AmountStacks } from "./AmountStacks";
@@ -7,7 +7,7 @@ import { SvgButton } from "@/components/SvgButton";
 
 type MovieCardProps = {
   id: string;
-  onRemove(movie: Movie): void;
+  onRemove(movieId: string): void;
 };
 
 export function MovieCard({ id, onRemove }: MovieCardProps) {
@@ -37,7 +37,7 @@ export function MovieCard({ id, onRemove }: MovieCardProps) {
         </text>
 
         <SvgButton
-          onClick={() => onRemove(movieDetails)}
+          onClick={() => onRemove(movieDetails.id)}
           tooltip={`Remove movie: ${movieDetails.title}`}
         >
           <CloseIcon x="90" y="7" width="3" height="3" />

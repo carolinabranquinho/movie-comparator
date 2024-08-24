@@ -1,23 +1,22 @@
-import { Movie } from "@/data/movies";
 import { MovieCard } from "./MovieCard";
 import { splitIntoStacks } from "./utils";
 
 type MoviesComparationProps = {
-  selectedMovies: Maybe<Movie[]>;
+  selectedMoviesIds: Maybe<string[]>;
   moviesPerRow?: number;
-  onRemove(movie: Movie): void;
+  onRemove(movieId: string): void;
 };
 
 export function MoviesComparation({
-  selectedMovies,
+  selectedMoviesIds,
   moviesPerRow = 3,
   onRemove,
 }: MoviesComparationProps) {
-  if (!selectedMovies?.length) {
+  if (!selectedMoviesIds?.length) {
     return <h3>Please Select at least one movie</h3>;
   }
 
-  const stacks = splitIntoStacks(selectedMovies, moviesPerRow);
+  const stacks = splitIntoStacks(selectedMoviesIds, moviesPerRow);
 
   return (
     <div className="p-8">
@@ -33,7 +32,7 @@ export function MoviesComparation({
             const cardHeight = 100 / stacks.length;
             return (
               <svg
-                key={selected.id}
+                key={selected}
                 width={cardWidth}
                 height={cardHeight}
                 viewBox="0 0 100 100"
@@ -41,7 +40,7 @@ export function MoviesComparation({
                 x={cardWidth * index}
                 y={cardHeight * row}
               >
-                <MovieCard id={selected.id} onRemove={onRemove} />
+                <MovieCard id={selected} onRemove={onRemove} />
               </svg>
             );
           });

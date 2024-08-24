@@ -4,7 +4,7 @@ import { Movie, useSearchMovies } from "@/data/movies";
 import { MoviesComparation } from "@/components/MoviesComparation";
 
 function HomePage() {
-  const [selectedMovies, setSelectedMovies] = useState<Maybe<Movie[]>>();
+  const [selectedMovies, setSelectedMovies] = useState<Maybe<string[]>>();
   const [query, setQuery] = useState<Maybe<string>>("");
   // TODO: implement error state
   const { data, isLoading } = useSearchMovies(query);
@@ -19,13 +19,13 @@ function HomePage() {
     const selectedMovie = data?.find((m) => m.id === selectedOption?.id);
 
     if (selectedMovie) {
-      setSelectedMovies((current) => [...(current || []), selectedMovie]);
+      setSelectedMovies((current) => [...(current || []), selectedMovie.id]);
     }
   };
 
-  const handleOnRemove = (movie: Movie) => {
+  const handleOnRemove = (movieId: string) => {
     setSelectedMovies((current) =>
-      (current || []).filter((m) => m.id !== movie.id),
+      (current || []).filter((m) => m !== movieId),
     );
   };
 
@@ -33,7 +33,7 @@ function HomePage() {
   const filteredMovies = options?.filter(
     (movie: ComboboxOption) =>
       !selectedMovies?.some(
-        (selectedMovie: Movie) => selectedMovie.id === movie.id,
+        (selectedMovie: string) => selectedMovie === movie.id,
       ),
   );
 
@@ -51,7 +51,7 @@ function HomePage() {
 
       <section className="h-[80vh]">
         <MoviesComparation
-          selectedMovies={selectedMovies}
+          selectedMoviesIds={selectedMovies}
           onRemove={handleOnRemove}
         />
       </section>
