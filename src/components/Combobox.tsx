@@ -4,7 +4,6 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from "@headlessui/react";
-import { Maybe } from "../lib/types";
 import { useEffect, useMemo, useState } from "react";
 import { debounce } from "lodash";
 

@@ -1,32 +1,33 @@
 import { useState } from "react";
 import { Combobox, ComboboxOption } from "../components/Combobox";
-import { Maybe } from "../lib/types";
 import { Movie, useSearchMovies } from "../data/movies";
+import { MovieCard } from "../components/MovieCard";
 
 function HomePage() {
-  const [selectedMovies, setSelectedMovies] =
-    useState<Maybe<ComboboxOption[]>>();
+  const [selectedMovies, setSelectedMovies] = useState<Maybe<Movie[]>>();
   const [query, setQuery] = useState<Maybe<string>>("");
   // TODO: implement error state
   const { data, isLoading } = useSearchMovies(query);
 
-  const movies = data?.map((m: Movie) => ({
+  const options = data?.map((m: Movie) => ({
     id: m.id,
     label: m.title,
   }));
 
   // TODO: limit max of selections
-  const handleOnSelect = (selectedMovie?: Maybe<ComboboxOption>) => {
+  const handleOnSelect = (selectedOption?: Maybe<ComboboxOption>) => {
+    const selectedMovie = data?.find((m) => m.id === selectedOption?.id);
+
     if (selectedMovie) {
       setSelectedMovies((current) => [...(current || []), selectedMovie]);
     }
   };
 
   // Remove selected movies from the options
-  const filteredMovies = movies?.filter(
+  const filteredMovies = options?.filter(
     (movie: ComboboxOption) =>
       !selectedMovies?.some(
-        (selectedMovie: ComboboxOption) => selectedMovie.id === movie.id,
+        (selectedMovie: Movie) => selectedMovie.id === movie.id,
       ),
   );
 
@@ -42,11 +43,9 @@ function HomePage() {
         loading={isLoading}
       />
 
-      <ul>
-        {selectedMovies?.map((selected) => (
-          <li key={selected.id}>{selected.label}</li>
-        ))}
-      </ul>
+      {selectedMovies?.map((selected) => (
+        <MovieCard key={selected.id} movie={selected} />
+      ))}
     </main>
   );
 }
