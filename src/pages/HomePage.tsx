@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Combobox, ComboboxOption } from "@/components/Combobox";
 import { Movie, useSearchMovies } from "@/data/movies";
 import { MoviesComparation } from "@/components/MoviesComparation";
+import { useSearchParams } from "react-router-dom";
 
 function HomePage() {
-  const [selectedMovies, setSelectedMovies] = useState<Maybe<string[]>>();
   const [query, setQuery] = useState<Maybe<string>>("");
+  const [searchParams, setSearchParams] = useSearchParams();
   // TODO: implement error state
   const { data, isLoading } = useSearchMovies(query);
 
@@ -14,19 +15,34 @@ function HomePage() {
     label: m.title,
   }));
 
+  const selectedMovies = searchParams.getAll("movie");
+
   // TODO: limit max of selections
   const handleOnSelect = (selectedOption?: Maybe<ComboboxOption>) => {
+    const updatedSearchParams = new URLSearchParams(searchParams);
     const selectedMovie = data?.find((m) => m.id === selectedOption?.id);
 
     if (selectedMovie) {
-      setSelectedMovies((current) => [...(current || []), selectedMovie.id]);
+      // const current = searchParams.getAll("movie");
+      updatedSearchParams.append("movie", selectedMovie.id);
+      setSearchParams(updatedSearchParams);
     }
   };
 
   const handleOnRemove = (movieId: string) => {
-    setSelectedMovies((current) =>
-      (current || []).filter((m) => m !== movieId),
+    const updatedSearchParams = new URLSearchParams(searchParams);
+
+    const currentMoviesIds = updatedSearchParams.getAll("movie");
+    const newMoviesIds = currentMoviesIds.filter(
+      (mId) => mId.toString() !== movieId.toString(),
     );
+    updatedSearchParams.delete("movie");
+
+    newMoviesIds.forEach((element) => {
+      updatedSearchParams.append("movie", element);
+    });
+
+    setSearchParams(updatedSearchParams);
   };
 
   // Remove selected movies from the options
