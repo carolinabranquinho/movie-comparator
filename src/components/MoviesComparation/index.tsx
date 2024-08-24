@@ -33,6 +33,7 @@ export function MoviesComparation({
             const cardHeight = 100 / stacks.length;
             return (
               <svg
+                key={selected.id}
                 width={cardWidth}
                 height={cardHeight}
                 viewBox="0 0 100 100"
@@ -40,11 +41,7 @@ export function MoviesComparation({
                 x={cardWidth * index}
                 y={cardHeight * row}
               >
-                <MovieCard
-                  key={selected.id}
-                  movie={selected}
-                  onRemove={onRemove}
-                />
+                <MovieCard id={selected.id} onRemove={onRemove} />
               </svg>
             );
           });

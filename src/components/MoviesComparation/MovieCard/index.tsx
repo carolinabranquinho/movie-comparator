@@ -3,47 +3,50 @@ import { Movie, useGetMovieDetails } from "@/data/movies";
 import { getFullImagePath } from "@/api/api-utils";
 import { CloseIcon } from "../../CloseIcon";
 import { AmountStacks } from "./AmountStacks";
+import { SvgButton } from "@/components/SvgButton";
 
 type MovieCardProps = {
-  movie: Movie;
+  id: string;
   onRemove(movie: Movie): void;
 };
 
-export function MovieCard({ movie, onRemove }: MovieCardProps) {
+export function MovieCard({ id, onRemove }: MovieCardProps) {
   const { data: configuration, isLoading: isLoadingConfig } =
     useConfiguration();
   const { data: movieDetails, isLoading: isLoadingMovieDetails } =
-    useGetMovieDetails(movie.id);
+    useGetMovieDetails(id);
 
   const isLoading = isLoadingConfig || isLoadingMovieDetails;
 
+  // TODO: implement better loading states
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  const imageUrl = getFullImagePath(movie, configuration);
+  if (!movieDetails) {
+    return <div>No movie found</div>;
+  }
+
+  const imageUrl = getFullImagePath(movieDetails, configuration);
 
   return (
     <svg width="100%" height="100%" viewBox="0 0 100 100">
       <g color="red">
         <text x="10" y="10" fontSize="4">
-          {movie.title}
+          {movieDetails.title}
         </text>
-        <g>
-          <title>remove movie</title>
-          <CloseIcon
-            x="96"
-            y="7"
-            width="4"
-            height="4"
-            onClick={() => onRemove(movie)}
-          />
-        </g>
+
+        <SvgButton
+          onClick={() => onRemove(movieDetails)}
+          tooltip={`Remove movie: ${movieDetails.title}`}
+        >
+          <CloseIcon x="90" y="7" width="3" height="3" />
+        </SvgButton>
       </g>
 
       {/* TODO: What??!? */}
       <text x="10" y="16" fontSize="2">
-        Popularity: {movieDetails?.popularity}
+        Popularity: {movieDetails.popularity}
       </text>
 
       <g id="moviePoster">
@@ -53,7 +56,7 @@ export function MovieCard({ movie, onRemove }: MovieCardProps) {
       <AmountStacks
         title="Budget"
         id="movieBudget"
-        amount={movieDetails?.budget || 0}
+        amount={movieDetails.budget || 0}
         x={46}
         y={0}
       />
@@ -61,7 +64,7 @@ export function MovieCard({ movie, onRemove }: MovieCardProps) {
       <AmountStacks
         title="Revenue"
         id="movieRevenue"
-        amount={movieDetails?.revenue || 0}
+        amount={movieDetails.revenue || 0}
         x={46}
         y={25}
       />
