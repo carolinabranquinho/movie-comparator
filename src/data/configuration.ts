@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   ConfigurationResponse,
   getConfigurationData,
-} from "../api/configuration";
+} from "@/api/configuration";
 
 export type Configuration = {
   secureBaseUrl: string;

@@ -1,6 +1,6 @@
 import { last } from "lodash";
-import { Configuration } from "../data/configuration";
-import { Movie } from "../data/movies";
+import { Configuration } from "@/data/configuration";
+import { Movie } from "@/data/movies";
 
 // TODO: support multiple sizes
 export function getFullImagePath(

@@ -1,4 +1,4 @@
-import { MOVIE_API_KEY, MOVIE_API_URL } from "../config/consts";
+import { MOVIE_API_KEY, MOVIE_API_URL } from "@/config/consts";
 
 export type ConfigurationResponse = {
   images: {

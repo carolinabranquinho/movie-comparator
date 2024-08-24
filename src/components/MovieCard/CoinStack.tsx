@@ -1,4 +1,4 @@
-import { splitIntoStacks } from "../../utils";
+import { splitIntoStacks } from "./utils";
 
 type CoinStackProps = {
   coinCount: number;

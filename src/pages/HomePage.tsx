@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Combobox, ComboboxOption } from "../components/Combobox";
-import { Movie, useSearchMovies } from "../data/movies";
-import { MovieCard } from "../components/MovieCard";
+import { Combobox, ComboboxOption } from "@/components/Combobox";
+import { Movie, useSearchMovies } from "@/data/movies";
+import { MovieCard } from "@/components/MovieCard";
 
 function HomePage() {
   const [selectedMovies, setSelectedMovies] = useState<Maybe<Movie[]>>();

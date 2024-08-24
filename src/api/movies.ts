@@ -1,6 +1,6 @@
-import { MOVIE_API_KEY, MOVIE_API_URL } from "../config/consts";
-
 // TODO: REFACTOR THIS FILE
+
+import { MOVIE_API_KEY, MOVIE_API_URL } from "@/config/consts";
 
 type ApiMovieSummary = {
   id: string;

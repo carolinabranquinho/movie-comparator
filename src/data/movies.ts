@@ -4,7 +4,7 @@ import {
   getMoviesData,
   MovieDetailsResponse,
   MoviesResponse,
-} from "../api/movies";
+} from "@/api/movies";
 
 export type Movie = {
   id: string;

@@ -1,6 +1,6 @@
-import { useConfiguration } from "../../data/configuration";
-import { Movie, useGetMovieDetails } from "../../data/movies";
-import { getFullImagePath } from "../../api/api-utils";
+import { useConfiguration } from "@/data/configuration";
+import { Movie, useGetMovieDetails } from "@/data/movies";
+import { getFullImagePath } from "@/api/api-utils";
 import { CoinStack } from "./CoinStack";
 import { BillStack } from "./BillStack";
 
