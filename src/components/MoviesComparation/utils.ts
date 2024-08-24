@@ -1,15 +1,9 @@
 import { last } from "lodash";
 
-export const generateStacks = (elementsCount: number, maxStackSize: number) => {
-  const stacks = [];
-  while (elementsCount > 0) {
-    const stackSize = Math.min(elementsCount, maxStackSize);
-    stacks.push(stackSize);
-    elementsCount -= stackSize;
-  }
-  return stacks;
-};
-
+/**
+ * Split elements into stacks of a determined length
+ *
+ */
 export const splitIntoStacks = <T>(
   elements: T[],
   maxStackSize: number,

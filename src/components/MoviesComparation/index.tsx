@@ -20,7 +20,7 @@ export function MoviesComparation({
   const stacks = splitIntoStacks(selectedMovies, moviesPerRow);
 
   return (
-    <div className="bg-slate-300 p-8">
+    <div className="p-8">
       <svg
         width="100%"
         height="100%"

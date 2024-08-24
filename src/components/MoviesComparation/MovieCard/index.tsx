@@ -1,7 +1,7 @@
 import { useConfiguration } from "@/data/configuration";
 import { Movie, useGetMovieDetails } from "@/data/movies";
 import { getFullImagePath } from "@/api/api-utils";
-import { CloseIcon } from "./CloseIcon";
+import { CloseIcon } from "../../CloseIcon";
 import { AmountStacks } from "./AmountStacks";
 
 type MovieCardProps = {
@@ -24,12 +24,7 @@ export function MovieCard({ movie, onRemove }: MovieCardProps) {
   const imageUrl = getFullImagePath(movie, configuration);
 
   return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 100 100"
-      className="bg-slate-300"
-    >
+    <svg width="100%" height="100%" viewBox="0 0 100 100">
       <g color="red">
         <text x="10" y="10" fontSize="4">
           {movie.title}

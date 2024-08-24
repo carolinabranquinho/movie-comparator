@@ -1,4 +1,4 @@
-import { generateStacks } from "../utils";
+import { splitIntoStacks } from "../utils";
 
 type BillStackProps = {
   billCount: number;
@@ -47,11 +47,15 @@ const billSvg = (
 );
 
 export function BillStack({ billCount, maxBillStack = 12 }: BillStackProps) {
-  const stacks = generateStacks(billCount, maxBillStack);
+  const stacks = splitIntoStacks(
+    Array.from<number>({ length: billCount }).fill(0),
+    maxBillStack,
+  );
+
   return stacks.map((stack, offset) => {
     return (
       <g key={offset}>
-        {Array.from({ length: stack }).map((_, index) => (
+        {stack.map((_, index) => (
           <g
             key={index}
             transform={`translate(${offset * BILL_WIDTH * 0.175}, ${30 - index}) scale(0.3)`}
