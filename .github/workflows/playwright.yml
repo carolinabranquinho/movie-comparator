@@ -8,6 +8,10 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_APP_URL: ${{ secrets.PLAYWRIGHT_APP_URL }}
+      VITE_MOVIE_API_URL: ${{ secrets.VITE_MOVIE_API_URL }}
+      VITE_MOVIE_API_KEY: ${{ secrets.VITE_MOVIE_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

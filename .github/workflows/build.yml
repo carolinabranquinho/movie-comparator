@@ -12,6 +12,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_APP_URL: ${{ secrets.PLAYWRIGHT_APP_URL }}
+      VITE_MOVIE_API_URL: ${{ secrets.VITE_MOVIE_API_URL }}
+      VITE_MOVIE_API_KEY: ${{ secrets.VITE_MOVIE_API_KEY }}
 
     strategy:
       matrix:
@@ -28,5 +32,5 @@ jobs:
       - name: Install dependencies
         run: npm install -g yarn && yarn
       - run: yarn ci
-      - run: yarn run build --if-present
+      - run: yarn run build
       - run: yarn test
