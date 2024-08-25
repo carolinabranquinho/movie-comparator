@@ -1,17 +1,17 @@
 import { MovieCard } from "./MovieCard";
 import { splitIntoStacks } from "./utils";
 
-type MoviesComparationProps = {
+type MoviesComparisonProps = {
   selectedMoviesIds: Maybe<string[]>;
   moviesPerRow?: number;
   onRemove(movieId: string): void;
 };
 
-export function MoviesComparation({
+export function MoviesComparison({
   selectedMoviesIds,
   moviesPerRow = 3,
   onRemove,
-}: MoviesComparationProps) {
+}: MoviesComparisonProps) {
   if (!selectedMoviesIds?.length) {
     return <h3>Please Select at least one movie</h3>;
   }

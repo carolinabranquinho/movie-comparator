@@ -1,6 +1,6 @@
 import { splitIntoStacks } from "./utils";
 
-describe("MoviesComparation utils", () => {
+describe("MoviesComparison utils", () => {
   describe("#splitIntoStacks", () => {
     it("splits elements into stacks evenly", () => {
       const elements = ["1", "2", "3", "4"];

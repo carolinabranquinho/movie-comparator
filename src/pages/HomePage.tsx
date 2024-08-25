@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Combobox, ComboboxOption } from "@/components/Combobox";
 import { Movie, useSearchMovies } from "@/data/movies";
-import { MoviesComparation } from "@/components/MoviesComparation";
+import { MoviesComparison } from "@/components/MoviesComparison";
 import { useSearchParams } from "react-router-dom";
 
 function HomePage() {
@@ -66,7 +66,7 @@ function HomePage() {
       />
 
       <section className="h-[80vh]">
-        <MoviesComparation
+        <MoviesComparison
           selectedMoviesIds={selectedMovies}
           onRemove={handleOnRemove}
         />
