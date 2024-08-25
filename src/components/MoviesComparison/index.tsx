@@ -17,30 +17,39 @@ export function MoviesComparison({
   }
 
   const stacks = splitIntoStacks(selectedMoviesIds, moviesPerRow);
+  const elementsPerRow = stacks.length > 1 ? 3 : stacks?.[0]?.length || 1;
+
+  const perfectHeight = 67 / elementsPerRow;
+  const perfectProportion = perfectHeight * stacks.length;
 
   return (
-    <div className="p-8">
+    <div className={`flex justify-center p-8`}>
       <svg
         width="100%"
-        height="100%"
-        viewBox="0 0 100 100"
+        height="67%"
+        viewBox={`0 0 100 ${perfectProportion}`}
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMinYMin meet"
+        className="max-w-[1600px] p-2"
       >
         {stacks.map((stack, row) => {
           return stack?.map((selected, index) => {
-            const cardWidth = 100 / stack.length;
-            const cardHeight = 100 / stacks.length;
+            const cardWidth = stacks.length > 1 ? 33.3 : 100 / stack.length;
+
             return (
               <svg
                 key={selected}
-                width={cardWidth}
-                height={cardHeight}
-                viewBox="0 0 100 100"
+                width={`${cardWidth}`}
+                viewBox="0 0 100 67"
                 xmlns="http://www.w3.org/2000/svg"
-                x={cardWidth * index}
-                y={cardHeight * row}
+                x={`${cardWidth * index}%`}
+                y={`${perfectHeight * row}`}
+                preserveAspectRatio="xMinYMin meet"
+                name="movie-card-svg"
               >
-                <MovieCard id={selected} onRemove={onRemove} />
+                <g transform="scale(0.975)">
+                  <MovieCard id={selected} onRemove={onRemove} />
+                </g>
               </svg>
             );
           });

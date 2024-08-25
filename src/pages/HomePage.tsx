@@ -54,24 +54,41 @@ function HomePage() {
   );
 
   return (
-    <main className="center h-full w-full text-center">
-      <h1>Welcome</h1>
+    <>
+      <header className="border-b-2 bg-stone-100 p-4 shadow-sm">
+        <a
+          href="/"
+          className="p-2 text-3xl text-teal-700 decoration-transparent"
+        >
+          MovieCompare!
+        </a>
+      </header>
 
-      <Combobox
-        onSelect={handleOnSelect}
-        onChangeQuery={setQuery}
-        query={query}
-        options={filteredMovies}
-        loading={isLoading}
-      />
-
-      <section className="h-[80vh]">
-        <MoviesComparison
-          selectedMoviesIds={selectedMovies}
-          onRemove={handleOnRemove}
+      <main className="center h-full w-full p-2 text-center">
+        <h1 className="m-2">Welcome to Movie Compare 🍿</h1>
+        <p>
+          This is an interactive app that lets you visually compare movie
+          information using dynamic SVG visualizations. Dive into movie
+          comparisons and explore key metrics.
+        </p>
+        <Combobox
+          onSelect={handleOnSelect}
+          onChangeQuery={setQuery}
+          query={query}
+          options={filteredMovies}
+          loading={isLoading}
+          placeholder="Search for a movie title"
+          ariaLabel="Search for a movie title"
         />
-      </section>
-    </main>
+
+        <section>
+          <MoviesComparison
+            selectedMoviesIds={selectedMovies}
+            onRemove={handleOnRemove}
+          />
+        </section>
+      </main>
+    </>
   );
 }
 

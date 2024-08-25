@@ -6,6 +6,18 @@ import { NO_IMAGE_PATH } from "@/config/consts";
 describe("API Utils", () => {
   describe("#getFullImagePath", () => {
     describe("with Configuration", () => {
+      it("normalizes the secureBaseUrl trailing slash", () => {
+        const imagePath = getFullImagePath(
+          { posterPath: "poster.png" } as Movie,
+          {
+            secureBaseUrl: "https://example.com/",
+            posterSizes: ["original"],
+          } as Configuration,
+        );
+
+        expect(imagePath).toEqual("https://example.com/original/poster.png");
+      });
+
       it("returns the full path of the image", () => {
         const imagePath = getFullImagePath(
           { posterPath: "poster.png" } as Movie,

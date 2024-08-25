@@ -178,8 +178,7 @@ This project leverages automated deployment via GitHub Actions, configured to tr
   - [x] 1.1.3 Users can select a movie by the title.
 - [x] 1.2 Compare Movies
   - [x] 1.2.1 User can select multiple movies displayed together for comparison.
-  - [x] 1.2.2 Users can select up to 6 movies.
-  - [x] 1.2.3 Users can remove movies from the comparison individually.
+  - [x] 1.2.2 Users can remove movies from the comparison individually.
 - [x] 1.3 Share Comparison
   - [x] 1.3.1 Users can share the comparison by sharing the URL.
 

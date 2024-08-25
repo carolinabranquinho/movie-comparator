@@ -11,9 +11,13 @@ export function getFullImagePath(
   movie: Movie,
   configuration?: Maybe<Configuration>,
 ) {
-  if (!configuration || !movie?.posterPath) {
+  if (!configuration?.secureBaseUrl || !movie?.posterPath) {
     return NO_IMAGE_PATH;
   }
 
-  return `${configuration.secureBaseUrl}/${last(configuration.posterSizes)}/${movie.posterPath}`;
+  const baseUrl = configuration.secureBaseUrl.endsWith("/")
+    ? configuration.secureBaseUrl
+    : configuration.secureBaseUrl + "/";
+
+  return `${baseUrl}${last(configuration.posterSizes)}/${movie.posterPath}`;
 }

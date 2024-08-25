@@ -7,7 +7,7 @@ export class HomePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.searchBox = page.getByLabel("Movie Title");
+    this.searchBox = page.getByLabel("Search for a movie title");
     this.movieCard = page.getByTestId("movie-card");
   }
 

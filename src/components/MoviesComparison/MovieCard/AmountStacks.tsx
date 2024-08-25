@@ -5,6 +5,7 @@ type AmountStacksProps = {
   amount: number;
   title?: string;
   id?: string;
+  name?: string;
   x: number;
   y: number;
 };
@@ -18,6 +19,7 @@ export function AmountStacks({
   amount,
   title = "Amount",
   id,
+  name,
   x,
   y,
 }: AmountStacksProps) {
@@ -27,7 +29,7 @@ export function AmountStacks({
   const coinCount = Math.floor(remainingRevenue / amountPerCoin);
 
   return (
-    <g id={id}>
+    <g id={id} name={name}>
       <text x={x} y={y + 22} fontSize="2">
         {title}: {amount}
       </text>

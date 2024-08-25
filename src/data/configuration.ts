@@ -18,12 +18,12 @@ function parseGetConfigurationData(
   };
 }
 
-export function useConfiguration() {
-  const queryConfiguration = async () => {
-    const configurationData = await getConfigurationData();
-    return parseGetConfigurationData(configurationData);
-  };
+const queryConfiguration = async () => {
+  const configurationData = await getConfigurationData();
+  return parseGetConfigurationData(configurationData);
+};
 
+export function useConfiguration() {
   return useQuery({
     queryKey: ["configuration"],
     queryFn: queryConfiguration,

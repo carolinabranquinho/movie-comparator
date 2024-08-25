@@ -30,37 +30,48 @@ export function MovieCard({ id, onRemove }: MovieCardProps) {
   const imageUrl = getFullImagePath(movieDetails, configuration);
 
   return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 100 100"
-      data-testid="movie-card"
-    >
-      <g color="red">
-        <text x="10" y="10" fontSize="4">
-          {movieDetails.title}
-        </text>
+    <g name="movie-card" data-testid="movie-card">
+      <g className="text-slate-100">
+        <rect
+          x="1"
+          y="1"
+          fill="currentColor"
+          width="98.5%"
+          height="97.5%"
+          stroke="rgb(55, 65, 81)"
+          strokeWidth="1px"
+          paintOrder="stroke"
+        />
+      </g>
+
+      <g>
+        <foreignObject width="90%" height="18" x={0} y={0}>
+          <div className="relative p-1 text-left">
+            <span className="text line-clamp-2 text-ellipsis text-wrap text-[3.75px] font-bold leading-tight tracking-tighter">
+              {movieDetails.title}
+            </span>
+          </div>
+        </foreignObject>
 
         <SvgButton
           onClick={() => onRemove(movieDetails.id)}
           tooltip={`Remove movie: ${movieDetails.title}`}
         >
-          <CloseIcon x="90" y="7" width="3" height="3" />
+          <CloseIcon x="93" y="4.25" width="3" height="3" color="red" />
         </SvgButton>
       </g>
 
-      {/* TODO: What??!? */}
-      <text x="10" y="16" fontSize="2">
+      <text x="46" y="16" fontSize="2">
         Popularity: {movieDetails.popularity}
       </text>
 
-      <g id="moviePoster">
-        <image width="30" x="15" y="20" href={imageUrl} />
+      <g name="movie-poster">
+        <image width="30" x="8" y="20" href={imageUrl} />
       </g>
 
       <AmountStacks
         title="Budget"
-        id="movieBudget"
+        name="movie-budget"
         amount={movieDetails.budget || 0}
         x={46}
         y={0}
@@ -68,11 +79,11 @@ export function MovieCard({ id, onRemove }: MovieCardProps) {
 
       <AmountStacks
         title="Revenue"
-        id="movieRevenue"
+        name="movie-revenue"
         amount={movieDetails.revenue || 0}
         x={46}
         y={25}
       />
-    </svg>
+    </g>
   );
 }
