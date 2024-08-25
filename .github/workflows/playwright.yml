@@ -1,9 +1,11 @@
 name: Playwright Tests
 on:
-  push:
+  workflow_run:
+    workflows: ["Build and Test"]
     branches: [main]
-  pull_request:
-    branches: [main]
+    types:
+      - completed
+
 jobs:
   test:
     timeout-minutes: 60
