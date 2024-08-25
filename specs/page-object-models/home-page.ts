@@ -12,11 +12,7 @@ export class HomePage {
   }
 
   async goto(movieId?: string) {
-    await this.page.goto(
-      movieId
-        ? `http://localhost:5173?movie=${movieId}`
-        : "http://localhost:5173",
-    );
+    await this.page.goto(movieId ? `/?movie=${movieId}` : "/");
 
     expect(this.page.getByText("Welcome", { exact: true })).toBeVisible();
   }
@@ -33,9 +29,13 @@ export class HomePage {
   }
 
   async removeMovie(movie: string) {
+    // Firefox doesn't seem to like clicking on SVG "buttons" :)
     await this.page
       .getByRole("button", { name: `Remove movie: ${movie}` })
-      .click();
+      .focus();
+    await this.page
+      .getByRole("button", { name: `Remove movie: ${movie}` })
+      .press("Enter");
 
     expect(this.page.getByTestId("movie-card")).not.toBeVisible();
   }

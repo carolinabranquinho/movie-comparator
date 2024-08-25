@@ -11,3 +11,5 @@ export const MOVIE_API_URL = import.meta.env.VITE_MOVIE_API_URL;
 export const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 export const NO_IMAGE_PATH = "/no-image.jpg";
+
+export const APP_URL = import.meta.env.VITE_APP_URL;
