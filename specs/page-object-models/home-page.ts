@@ -14,7 +14,7 @@ export class HomePage {
   async goto(movieId?: string) {
     await this.page.goto(movieId ? `/?movie=${movieId}` : "/");
 
-    expect(this.page.getByText("Welcome", { exact: true })).toBeVisible();
+    expect(this.page.getByText("Welcome to movie compare")).toBeVisible();
   }
 
   async searchMovie(query: string) {
