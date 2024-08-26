@@ -74,6 +74,9 @@ GitHub actions easily integrate with the GitHub repo and are also very used to c
 
 **Dev environment setup**
 
+Make sure to clone the `.env.example` file and rename it to `.env`.
+You'll also need an API token from themoviedb, follow their [instructions](https://developer.themoviedb.org/reference/intro/authentication).
+
 <details>
  <summary>1. Make sure you are using compatible Node version (v18+)</summary>
 
