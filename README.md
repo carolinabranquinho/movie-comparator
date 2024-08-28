@@ -36,7 +36,7 @@ In addition, I'm also relying on TanStack queries caching and expiration capabil
 
 ## Technical Choices
 
-- React (CRA)
+- React
 - Typescript
 - Vite
 - TailwindCSS
@@ -247,3 +247,5 @@ This section lists possible improvements and features.
   - [ ] Add additional filters (e.g., filter by year, genre, and director).
   - [ ] Introduce a movie details page feature, enabling users to look into more details.
 - [ ] Use i18n to localize content.
+- [ ] Security audity.
+  - [ ] Improve security as a whole.
