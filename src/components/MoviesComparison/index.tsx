@@ -17,7 +17,8 @@ export function MoviesComparison({
   }
 
   const stacks = splitIntoStacks(selectedMoviesIds, moviesPerRow);
-  const elementsPerRow = stacks.length > 1 ? 3 : stacks?.[0]?.length || 1;
+  const elementsPerRow =
+    stacks.length > 1 ? moviesPerRow : stacks?.[0]?.length || 1;
 
   const perfectHeight = 67 / elementsPerRow;
   const perfectProportion = perfectHeight * stacks.length;
@@ -34,7 +35,8 @@ export function MoviesComparison({
       >
         {stacks.map((stack, row) => {
           return stack?.map((selected, index) => {
-            const cardWidth = stacks.length > 1 ? 33.3 : 100 / stack.length;
+            const cardWidth =
+              stacks.length > 1 ? 100 / moviesPerRow : 100 / stack.length;
 
             return (
               <svg
